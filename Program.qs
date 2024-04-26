@@ -17,7 +17,11 @@
     }
 
     function ResultAsString(result : Result) : String {
-        return result == One ? "One" : "Zero";
+        if result == One {
+            return "One"
+        } else { 
+            return "Zero"; 
+        }
     }
 
     operation BernsteinVaziraniAlgorithm(code : Int[]) : Result[] {
@@ -43,7 +47,7 @@
             // Measure each qubit in the register individually in the Z basis
             mutable results : Result[] = [];
             for i in 0..n-1 {
-                set results w/= i <- M(register[i]);
+                set results += [ M(register[i])];
             }
 
             ResetAll(register + [aux]);
